@@ -16,6 +16,11 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Api/User'
                 prefix: 'App\Api\User'
                 alias: User
+            Client:
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Api/Client'
+                prefix: 'App\Api\Client'
+                alias: Client
 
 when@test:
     doctrine:
