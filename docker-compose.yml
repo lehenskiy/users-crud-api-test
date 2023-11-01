@@ -1,0 +1,62 @@
+version: '3.5'
+services:
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: uca-php
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www:cached
+      - /var/www/var/cache # ignore cache folder
+      - /var/www/vendor # ignore vendor folder, copy in dockerfile. On every change
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - test-network
+
+  webserver:
+    image: nginx:alpine
+    container_name: uca-nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "1338:80"
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - test-network
+
+  db:
+    image: postgres:alpine
+    container_name: uca-db
+    restart: unless-stopped
+    tty: true
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-uca}
+      POSTGRES_USER: ${DB_USERNAME:-uca}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-uca}
+    ports:
+      - "5432:5432"
+    volumes:
+      - dbdata:/var/lib/postgresql/
+      - ./docker/postgresql/psql.cnf:/etc/postgresql/psql.cnf
+    networks:
+      - test-network
+
+#Docker Networks
+networks:
+  test-network:
+    driver: bridge
+    name: test_network
+
+#Volumes
+volumes:
+  dbdata:
+    driver: local
