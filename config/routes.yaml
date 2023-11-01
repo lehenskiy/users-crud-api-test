@@ -1,3 +1,8 @@
 api_user_controller:
     resource: ../src/Api/User/UserController.php
     type: attribute
+api_client_registration:
+    resource: ../src/Api/Client/RegistrationController.php
+    type: attribute
+api_client_authorization:
+    path: /api/auth
