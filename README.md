@@ -26,3 +26,6 @@ Access via - http://localhost:1338/api
 *Update*: `PATCH` /user/id
 
 *Delete*: `DELETE` /user/id
+
+#### Note
+Не был использован маппинг данных запроса в аргумент контроллера(https://symfony.com/blog/new-in-symfony-6-3-mapping-request-data-to-typed-objects)
