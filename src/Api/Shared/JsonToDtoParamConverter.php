@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Api;
+namespace App\Api\Shared;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;

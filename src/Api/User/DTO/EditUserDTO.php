@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\User\DTO;
 
-use App\Api\DtoToConvertFromJsonInterface;
+use App\Api\Shared\DtoToConvertFromJsonInterface;
 use App\Api\User\Gender;
 use DateTimeImmutable;
 use Symfony\Component\Validator\Constraints as Assert;

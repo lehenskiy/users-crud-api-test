@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Api\Client;
 
-use App\Api\DtoToConvertFromJsonInterface;
+use App\Api\Shared\DtoToConvertFromJsonInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class ClientDTO implements DtoToConvertFromJsonInterface
